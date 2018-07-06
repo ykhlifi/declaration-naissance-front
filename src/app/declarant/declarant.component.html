@@ -1,0 +1,36 @@
+<div class="container spacer">
+	<!-- pour gérer les erreur if error on affiche le message d'erreur -->
+	<div class="alert alert-danger" *ngIf="error">
+  		<strong>Error: </strong> {{ error }}
+	</div>
+	<div class="panel panel-primary">
+	   <div class="panel-heading"> Liste de Declarant <span *ngIf="listDeclarants">{{ listDeclarants.length }}</span> </div> 
+	   <div class="panel-body">
+	   <div class="form-group">
+	        <label> Mot cle : </label>
+	        <input type="text" [(ngModel)]="motCle"/>
+	        <button class="btn btn-primary espaceb" (click)="chercher()"> Chercher</button>
+	   
+	   
+	   </div>
+	   
+	      <table class="table table-striped">
+		      <tr>
+		         <th> ID </th><th> Nom </th><th> Prenom </th><th> Tel </th><th> Email </th>		         	        
+		      </tr>     
+		      <tr *ngFor="let dec of listDeclarants">      
+		         <td>{{dec.idDeclarant}}</td>
+		         <td>{{dec.nom}}</td>
+		         <td>{{dec.prenom}}</td>
+		         <td>{{dec.telephone}}</td>
+		         <td>{{dec.email}}</td>	   
+		         <td><button class="btn btn-danger" (click)="supprimer(dec.idDeclarant)">Supprimer</button>
+		             <button class="btn btn-primary espaceb">Modifier</button></td>     
+		      </tr>
+	      </table>
+       <button class="btn btn-primary">Nouveau Declarant</button>
+	   </div>
+	</div>
+</div>   
+		
+		

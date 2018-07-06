@@ -1,0 +1,40 @@
+<div class="container spacer">
+<!-- pour g�rer les erreur if error on affiche le message d'erreur -->
+	<div class="alert alert-danger" *ngIf="error">
+  		<strong>Error: </strong> {{ error }}
+	</div>
+	<div class="panel panel-primary">
+	   <div class="panel-heading">Liste d'enfant <span *ngIf="listEnfants">{{ listEnfants.length }}</span></div> 
+	   <div class="panel-body">
+	   
+	   <div class="form-group">
+	        <label> Mot cle : </label>
+	        <input type="number" [(ngModel)]="motCle"/>
+	        <button class="btn btn-primary espaceb" (click)="chercher()"> Chercher</button>
+	      
+	   </div>
+	      <table class="table table-striped" *ngIf="listEnfants">
+		      <tr>
+		         <th> ID </th> <th> Nom </th> <th> Prenom </th>  <th> Sexe </th> <th> Date-Naissance </th>
+		         <th> Date-Declaration </th><th> HeureNaissance </th><th> ID-Hoiptal </th><th> ID-Declarant </th>	         	        
+		      </tr>
+		    
+		      <tr *ngFor="let e of listEnfants">
+		      
+		         <td>{{e.idNouveauNe}}</td>
+		          <td>{{e.nom}}</td>
+		           <td>{{e.prenom}}</td>
+		            <td>{{e.sexe}} </td>
+		             <td>{{e.datenaissance |date:  "dd.MM.y"}}</td>
+		              <td>{{e.datedeclarant |date:  "dd.MM.y"}}</td>
+		                <td>{{e.heurenaissance}}</td>
+		                 <td>{{e.hopital}}</td>
+		                  <td>{{e.declarant}}</td>
+		                  <td><button class="btn btn-danger" (click)="supprimer(e.idNouveauNe)">Supprimer</button>
+		                  <button class="btn btn-primary espaceb" (click)="modifier()">Modifier</button></td>
+
+		      </tr>
+	      </table>
+	      
+	      <!-- NouveauNe(String nom, String prenom, String sexe, Date datenaissance, Date datedeclarant,
+			String heurenaissance, String hopital, String declarant) -->
